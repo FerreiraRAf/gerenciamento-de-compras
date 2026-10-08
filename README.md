@@ -40,13 +40,11 @@ O projeto implementa um **CRUD** completo (criar, ler, atualizar e excluir) segu
 └── src
     └── main
         ├── java
-        │   ├── ConexaoDB.java       # Cria a conexão com o banco SQLite
-        │   ├── CriadorTabela.java   # Script que cria a tabela "produtos"
-        │   ├── Produto.java         # Classe modelo (entidade)
-        │   ├── ProdutoDAO.java      # Acesso ao banco: inserir, consultar, atualizar e excluir
-        │   └── ProdutoGUI.java      # Interface gráfica JavaFX (classe principal)
-        └── resources
-            └── styles-produtos.css  # Estilos da interface
+            ├── ConexaoDB.java       # Cria a conexão com o banco SQLite
+            ├── CriadorTabela.java   # Script que cria a tabela "produtos"
+            ├── Produto.java         # Classe modelo (entidade)
+            ├── ProdutoDAO.java      # Acesso ao banco: inserir, consultar, atualizar e excluir
+            └── ProdutoGUI.java      # Interface gráfica JavaFX (classe principal)        
 ```
 
 ### Modelo da tabela `produtos`
@@ -98,8 +96,6 @@ O projeto implementa um **CRUD** completo (criar, ler, atualizar e excluir) segu
 Ou, no IntelliJ, abra a aba **Maven** (lado direito) e vá em `Plugins > javafx > javafx:run`.
 
 > ⚠️ **Não execute a `ProdutoGUI` pelo botão de play da IDE.** Isso causa o erro `JavaFX runtime components are missing`, pois o JavaFX precisa ser configurado pelo plugin do Maven. Use sempre `mvn javafx:run`.
-
-> ⚠️ O arquivo `styles-produtos.css` precisa estar em `src/main/resources` para que os estilos sejam carregados.
 
 ---
 
