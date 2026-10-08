@@ -121,3 +121,4 @@ ProdutoGUI  ──►  ProdutoDAO  ──►  ConexaoDB  ──►  SQLite
 
 - GitHub: [@FerreiraRAf](https://github.com/FerreiraRAf)
 - LinkedIn: [Rafael Ferreira](https://www.linkedin.com/in/rafael-ferreira-21131539b/)
+- Portifólio [SZM](https://ferreiraraf.github.io/my-portifolio/) 
