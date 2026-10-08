@@ -23,7 +23,8 @@ O projeto implementa um **CRUD** completo (criar, ler, atualizar e excluir) segu
 
 | Tecnologia | Uso |
 |---|---|
-| Java | Linguagem principal |
+| Java 21 | Linguagem principal |
+| Maven | Gerenciamento de dependências e build |
 | JavaFX | Interface gráfica |
 | SQLite | Banco de dados local |
 | JDBC (`sqlite-jdbc`) | Conexão entre Java e SQLite |
@@ -34,13 +35,18 @@ O projeto implementa um **CRUD** completo (criar, ler, atualizar e excluir) segu
 
 ```
 .
-├── ConexaoDB.java        # Cria a conexão com o banco SQLite
-├── CriadorTabela.java    # Script que cria a tabela "produtos"
-├── Produto.java          # Classe modelo (entidade)
-├── ProdutoDAO.java       # Acesso ao banco: inserir, consultar, atualizar e excluir
-├── ProdutoGUI.java       # Interface gráfica JavaFX (classe principal)
-├── styles-produtos.css   # Estilos da interface
-└── meu_banco_de_dados.db # Banco de dados SQLite
+├── pom.xml                          # Configuração do Maven (dependências e plugin do JavaFX)
+├── meu_banco_de_dados.db            # Banco de dados SQLite
+└── src
+    └── main
+        ├── java
+        │   ├── ConexaoDB.java       # Cria a conexão com o banco SQLite
+        │   ├── CriadorTabela.java   # Script que cria a tabela "produtos"
+        │   ├── Produto.java         # Classe modelo (entidade)
+        │   ├── ProdutoDAO.java      # Acesso ao banco: inserir, consultar, atualizar e excluir
+        │   └── ProdutoGUI.java      # Interface gráfica JavaFX (classe principal)
+        └── resources
+            └── styles-produtos.css  # Estilos da interface
 ```
 
 ### Modelo da tabela `produtos`
@@ -57,9 +63,10 @@ O projeto implementa um **CRUD** completo (criar, ler, atualizar e excluir) segu
 
 ## ✅ Pré-requisitos
 
-- [JDK](https://adoptium.net/) instalado (versão compatível com o JavaFX que você usar)
-- [JavaFX SDK](https://openjfx.io/)
-- Driver JDBC do SQLite: [`sqlite-jdbc`](https://github.com/xerial/sqlite-jdbc) (arquivo `.jar`)
+- [JDK 21](https://adoptium.net/) instalado
+- Uma IDE com suporte a Maven (como o IntelliJ IDEA, que já vem com o Maven embutido) **ou** o [Maven](https://maven.apache.org/download.cgi) instalado para usar pelo terminal
+
+> 💡 Não é preciso baixar o JavaFX nem o driver do SQLite manualmente. O Maven baixa tudo sozinho a partir do `pom.xml`.
 
 ---
 
@@ -72,21 +79,27 @@ O projeto implementa um **CRUD** completo (criar, ler, atualizar e excluir) segu
    cd gerenciamento-de-compras
 ```
 
-2. **Adicione as dependências** ao classpath/módulos do projeto (JavaFX SDK e `sqlite-jdbc`). Na sua IDE (IntelliJ, Eclipse, VS Code etc.), inclua os `.jar` nas bibliotecas do projeto e configure os argumentos de VM do JavaFX, por exemplo:
+2. **Abra o projeto na IDE**
 
-```
-   --module-path /caminho/para/javafx-sdk/lib --add-modules javafx.controls
-```
+   No IntelliJ: `File > Open`, selecione o arquivo `pom.xml` e escolha **Open as Project**. Aguarde o Maven baixar as dependências (a barra de progresso fica no canto inferior direito).
 
 3. **Crie a tabela** (apenas na primeira execução, caso o arquivo `.db` ainda não tenha a tabela):
 
    Execute a classe `CriadorTabela`.
 
-4. **Inicie a aplicação**
+4. **Inicie a aplicação pelo Maven**
 
-   Execute a classe `ProdutoGUI`.
+   No terminal, dentro da pasta do projeto:
 
-> ⚠️ O arquivo `styles-produtos.css` precisa estar no classpath (por exemplo, na pasta de recursos ou na raiz do código-fonte) para que os estilos sejam carregados.
+```bash
+   mvn javafx:run
+```
+
+Ou, no IntelliJ, abra a aba **Maven** (lado direito) e vá em `Plugins > javafx > javafx:run`.
+
+> ⚠️ **Não execute a `ProdutoGUI` pelo botão de play da IDE.** Isso causa o erro `JavaFX runtime components are missing`, pois o JavaFX precisa ser configurado pelo plugin do Maven. Use sempre `mvn javafx:run`.
+
+> ⚠️ O arquivo `styles-produtos.css` precisa estar em `src/main/resources` para que os estilos sejam carregados.
 
 ---
 
@@ -121,4 +134,4 @@ ProdutoGUI  ──►  ProdutoDAO  ──►  ConexaoDB  ──►  SQLite
 
 - GitHub: [@FerreiraRAf](https://github.com/FerreiraRAf)
 - LinkedIn: [Rafael Ferreira](https://www.linkedin.com/in/rafael-ferreira-21131539b/)
-- Portifólio [SZM](https://ferreiraraf.github.io/my-portifolio/) 
+- Portifólio [SZM](https://ferreiraraf.github.io/my-portifolio/)
