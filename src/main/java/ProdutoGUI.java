@@ -113,7 +113,7 @@ public class ProdutoGUI extends Application {
                 criarColuna("ID", "id_produto"),
                 criarColuna("Produto", "nome_produto"),
                 criarColuna("Quantidade", "quantidade"),
-                criarColuna("Prço", "preco"),
+                criarColuna("Preço", "preco"),
                 criarColuna("Status", "status")
         );
         tableView.getColumns().addAll(columns);
